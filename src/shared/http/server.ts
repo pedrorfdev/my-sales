@@ -5,6 +5,7 @@ import 'reflect-metadata';
 
 import ErrorHandleMiddleware from '@shared/middlewares/ErrorHandleMiddleware';
 import { AppDataSource } from '@shared/typeorm/data-source';
+import { errors } from 'celebrate';
 import routes from './routes';
 
 AppDataSource.initialize()
@@ -15,6 +16,7 @@ AppDataSource.initialize()
     app.use(express.json());
 
     app.use(routes);
+    app.use(errors());
     app.use(ErrorHandleMiddleware.handleError);
 
     console.log('Connected to the database!');
