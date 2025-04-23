@@ -1,3 +1,4 @@
+import AuthMiddleware from '@shared/middlewares/authMiddleware';
 import { Router } from 'express';
 import UserControllers from '../controllers/UsersControllers';
 import { createUserSchema } from '../schemas/UserSchema';
@@ -5,7 +6,7 @@ import { createUserSchema } from '../schemas/UserSchema';
 const usersRouter = Router();
 const usersControllers = new UserControllers();
 
-usersRouter.get('/', usersControllers.index);
+usersRouter.get('/', AuthMiddleware.execute, usersControllers.index);
 usersRouter.post('/', createUserSchema, usersControllers.create);
 
 export default usersRouter;
