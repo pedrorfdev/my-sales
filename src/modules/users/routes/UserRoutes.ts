@@ -1,4 +1,4 @@
-import AuthMiddleware from '@shared/middlewares/authMiddleware';
+import AuthMiddleware from '@shared/middlewares/AuthMiddleware';
 import { Router } from 'express';
 import UserControllers from '../controllers/UsersControllers';
 import { createUserSchema } from '../schemas/UserSchema';
