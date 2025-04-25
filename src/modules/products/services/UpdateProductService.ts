@@ -1,3 +1,4 @@
+import RedisCache from '@shared/cache/RedisCache';
 import AppError from '@shared/errors/AppError';
 import { Product } from '../database/entities/Product';
 import { productRepositories } from '../database/repositories/ProductRepositories';
@@ -16,6 +17,7 @@ export default class UpdateProductService {
     price,
     quantity,
   }: IUpdateProduct): Promise<Product> {
+    const redisCache = new RedisCache();
     const product = await productRepositories.findById(id);
 
     if (!product) {
@@ -24,7 +26,7 @@ export default class UpdateProductService {
 
     const productExists = await productRepositories.findByName(name);
 
-    if (productExists) {
+    if (productExists && name !== product.name) {
       throw new AppError('There is already one productwith this name', 409);
     }
 
@@ -33,6 +35,8 @@ export default class UpdateProductService {
     product.quantity = quantity;
 
     await productRepositories.save(product);
+
+    await redisCache.invalidate('api-mysales_PRODUCT_LIST');
 
     return product;
   }

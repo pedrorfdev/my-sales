@@ -4,6 +4,7 @@ import 'express-async-errors';
 import 'reflect-metadata';
 
 import ErrorHandleMiddleware from '@shared/middlewares/ErrorHandleMiddleware';
+import rateLimiter from '@shared/middlewares/rateLimiter';
 import { AppDataSource } from '@shared/typeorm/data-source';
 import { errors } from 'celebrate';
 import routes from './routes';
@@ -14,6 +15,7 @@ AppDataSource.initialize()
 
     app.use(cors());
     app.use(express.json());
+    app.use(rateLimiter);
 
     app.use(routes);
     app.use(errors());

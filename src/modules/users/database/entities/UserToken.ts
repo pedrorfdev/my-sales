@@ -20,7 +20,7 @@ export default class UserToken {
   user_id: number;
 
   @CreateDateColumn()
-  create_at: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
