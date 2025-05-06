@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "migration:create": "cross-env MIGRATION_NAME=%npm_config_name% ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create src/shared/typeorm/migrations/%npm_config_name%",
-    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/shared/typeorm/data-source.ts"
+    "migration:create": "cross-env MIGRATION_NAME=%npm_config_name% ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create src/shared/infra/typeorm/migrations/%npm_config_name%",
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/shared/infra/typeorm/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -57,6 +57,7 @@
     "rate-limiter-flexible": "^7.0.0",
     "redis": "^4.7.0",
     "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.4.0",
     "typeorm": "^0.3.22"
   }
 }
