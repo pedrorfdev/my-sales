@@ -14,7 +14,7 @@ export default class CreateCustomerService {
   async execute({ name, email }: ICreateCustomer): Promise<Customer> {
     const emailExists = await this.customerRepositories.findByEmail(email);
 
-    if (!emailExists) {
+    if (emailExists) {
       throw new AppError('Email address already used.', 409);
     }
 

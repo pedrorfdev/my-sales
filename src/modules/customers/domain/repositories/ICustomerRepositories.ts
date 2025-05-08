@@ -11,6 +11,7 @@ export interface ICustomersRepository {
   create(data: ICreateCustomer): Promise<ICustomer>;
   save(customer: ICustomer): Promise<ICustomer>;
   remove(customer: ICustomer): Promise<void>;
+
   findById(id: number): Promise<ICustomer | null>;
   findAndCount(pagination: Pagination): Promise<[ICustomer[], number]>;
   findByName(name: string): Promise<ICustomer | null>;
